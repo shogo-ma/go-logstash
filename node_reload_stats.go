@@ -1,6 +1,9 @@
 package logstash
 
-import "context"
+import (
+	"context"
+	"encoding/json"
+)
 
 type NodeReloadStatsInfo struct {
 	Reloads struct {
@@ -19,6 +22,15 @@ const (
 
 func NewNodeReloadStatsService(client *Client) *NodeReloadStatsService {
 	return &NodeReloadStatsService{client: client}
+}
+
+func (n *NodeReloadStatsInfo) Json() (string, error) {
+	bytes, err := json.Marshal(n)
+	if err != nil {
+		return "", err
+	}
+
+	return string(bytes), nil
 }
 
 func (n *NodeReloadStatsService) Path() string {

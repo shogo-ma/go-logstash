@@ -1,0 +1,11 @@
+{
+  "host": "24715d825098",
+  "version": "5.5.2",
+  "http_address": "0.0.0.0:9600",
+  "id": "712651b6-3bbd-4459-ba38-af0a1a79183b",
+  "name": "24715d825098",
+  "reloads": {
+    "successes": 0,
+    "failures": 0
+  }
+}
