@@ -75,3 +75,24 @@ func (c *Client) Plugins() *PluginsService {
 func (c *Client) HotThreadsInfo() *HotThreadsInfoService {
 	return NewHotThreadsInfoService(c)
 }
+
+// node stats info api
+func (c *Client) NodeStatsOSInfo() *NodeStatsOSService {
+	return NewNodeStatsOSService(c)
+}
+
+func (c *Client) NodeReloadStatsInfo() *NodeReloadStatsService {
+	return NewNodeReloadStatsService(c)
+}
+
+func (c *Client) NodeProcessStatsInfo() *NodeProcessStatsService {
+	return NewNodeProcessStatsService(c)
+}
+
+func (c *Client) NodeJVMStatsInfo() *NodeJVMStatsService {
+	return NewNodeJVMStatsService(c)
+}
+
+func (c *Client) NodePipelineStatsInfo() *NodePipelineStatsService {
+	return NewNodePipelineStatsService(c)
+}
