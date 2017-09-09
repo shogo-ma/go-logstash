@@ -1,4 +1,6 @@
 # go-logstash
+[![Build Status](https://travis-ci.org/shogo-ma/go-logstash.svg?branch=master)](https://travis-ci.org/shogo-ma/go-logstash)
+
 A library for call HTTP Request to logstash
 
 ## Installation
@@ -33,4 +35,4 @@ func main() {
 ## LICENSE
 The content of this repository are licensed under the MIT License unless otherwise noted. Please read [LICENSE][license] for the detail.
 
-[license]: LICENSE
+[license]: LICENSE.txt
