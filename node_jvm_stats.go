@@ -1,6 +1,9 @@
 package logstash
 
-import "context"
+import (
+	"context"
+	"encoding/json"
+)
 
 type NodeJVMStatsInfo struct {
 	JVM struct {
@@ -9,10 +12,10 @@ type NodeJVMStatsInfo struct {
 			PeakCount int `json:"peak_count"`
 		} `json:"threads"`
 		Mem struct {
-			HeapUsedInBytes         int `json:"heap_used_in_bytes"`
 			HeapUsedPercent         int `json:"heap_used_percent"`
 			HeapCommittedInBytes    int `json:"heap_committed_in_bytes"`
 			HeapMaxInBytes          int `json:"heap_max_in_bytes"`
+			HeapUsedInBytes         int `json:"heap_used_in_bytes"`
 			NonHeapUsedInBytes      int `json:"non_heap_used_in_bytes"`
 			NonHeapCommittedInBytes int `json:"non_heap_committed_in_bytes"`
 			Pools                   struct {
@@ -40,7 +43,7 @@ type NodeJVMStatsInfo struct {
 			} `json:"pools"`
 		} `json:"mem"`
 		GC struct {
-			Collections struct {
+			Collectors struct {
 				Old struct {
 					CollectionTimeInMillis int `json:"collection_time_in_millis"`
 					CollectionCount        int `json:"collection_count"`
@@ -49,7 +52,7 @@ type NodeJVMStatsInfo struct {
 					CollectionTimeInMillis int `json:"collection_time_in_millis"`
 					CollectionCount        int `json:"collection_count"`
 				} `json:"young"`
-			} `json:"collections"`
+			} `json:"collectors"`
 		} `json:"gc"`
 		UptimeInMillis int `json:"uptime_in_millis"`
 	} `json:"jvm"`
@@ -69,6 +72,15 @@ func NewNodeJVMStatsService(client *Client) *NodeJVMStatsService {
 
 func (n *NodeJVMStatsService) Path() string {
 	return node_jvm_stats_endpoint
+}
+
+func (n *NodeJVMStatsInfo) Json() (string, error) {
+	bytes, err := json.Marshal(n)
+	if err != nil {
+		return "", err
+	}
+
+	return string(bytes), nil
 }
 
 func (n *NodeJVMStatsService) Do(ctx context.Context) (*NodeJVMStatsInfo, error) {
