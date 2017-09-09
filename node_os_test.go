@@ -16,7 +16,7 @@ func TestNodeOSPath(t *testing.T) {
 	assert.Equal("/_node/os", path)
 }
 
-func TestNodeDo(t *testing.T) {
+func TestNodeOSDo(t *testing.T) {
 	assert := assert.New(t)
 
 	client := setupTestClient()

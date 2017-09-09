@@ -2,6 +2,7 @@ package logstash
 
 import (
 	"context"
+	"encoding/json"
 )
 
 type HotThreadsInfo struct {
@@ -14,6 +15,7 @@ type HotThreadsInfo struct {
 
 type Thread struct {
 	Name             string   `json:"name"`
+	ThreadID         int      `json:"thread_id"`
 	PercentOfCPUTime float64  `json:"percent_of_cpu_time"`
 	State            string   `json:"state"`
 	Traces           []string `json:"traces"`
@@ -33,6 +35,15 @@ func NewHotThreadsInfoService(client *Client) *HotThreadsInfoService {
 
 func (t *HotThreadsInfoService) Path() string {
 	return threads_info_endpoint
+}
+
+func (t *HotThreadsInfo) Json() (string, error) {
+	bytes, err := json.Marshal(t)
+	if err != nil {
+		return "", err
+	}
+
+	return string(bytes), nil
 }
 
 func (t *HotThreadsInfoService) Do(ctx context.Context) (*HotThreadsInfo, error) {
