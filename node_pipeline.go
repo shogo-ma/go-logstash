@@ -5,12 +5,14 @@ import (
 )
 
 type NodeInfoPipeline struct {
-	Workers               int    `json:"workers"`
-	BatchSize             int    `json:"batch_size"`
-	BatchDelay            int    `json:"batch_delay"`
-	ConfigReloadAutomatic bool   `json:"config_reload_automatic"`
-	ConfigReloadInterval  int    `json:"config_reload_interval"`
-	ID                    string `json:"id"`
+	Pipeline struct {
+		Workers               int    `json:"workers"`
+		BatchSize             int    `json:"batch_size"`
+		BatchDelay            int    `json:"batch_delay"`
+		ConfigReloadAutomatic bool   `json:"config_reload_automatic"`
+		ConfigReloadInterval  int    `json:"config_reload_interval"`
+		ID                    string `json:"id"`
+	}
 }
 
 type NodePipelineService struct {

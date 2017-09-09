@@ -5,10 +5,12 @@ import (
 )
 
 type NodeInfoOS struct {
-	Name                string `json:"name"`
-	Arch                string `json:"arch"`
-	Version             string `json:"version"`
-	AvailableProcessors int    `json:"available_processors"`
+	OS struct {
+		Name                string `json:"name"`
+		Arch                string `json:"arch"`
+		Version             string `json:"version"`
+		AvailableProcessors int    `json:"available_processors"`
+	} `json:"os"`
 }
 
 type NodeOSService struct {
