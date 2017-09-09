@@ -2,6 +2,7 @@ package logstash
 
 import (
 	"context"
+	"encoding/json"
 )
 
 type NodeInfoPipeline struct {
@@ -12,7 +13,7 @@ type NodeInfoPipeline struct {
 		ConfigReloadAutomatic bool   `json:"config_reload_automatic"`
 		ConfigReloadInterval  int    `json:"config_reload_interval"`
 		ID                    string `json:"id"`
-	}
+	} `json:"pipeline"`
 }
 
 type NodePipelineService struct {
@@ -25,6 +26,15 @@ const (
 
 func NewNodePipelineService(client *Client) *NodePipelineService {
 	return &NodePipelineService{client: client}
+}
+
+func (n *NodeInfoPipeline) Json() (string, error) {
+	bytes, err := json.Marshal(n)
+	if err != nil {
+		return "", err
+	}
+
+	return string(bytes), nil
 }
 
 func (n *NodePipelineService) Path() string {

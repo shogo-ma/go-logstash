@@ -2,6 +2,7 @@ package logstash
 
 import (
 	"context"
+	"encoding/json"
 )
 
 type NodeInfoJVM struct {
@@ -32,6 +33,15 @@ const (
 
 func NewNodeJVMService(client *Client) *NodeJVMService {
 	return &NodeJVMService{client: client}
+}
+
+func (n *NodeInfoJVM) Json() (string, error) {
+	bytes, err := json.Marshal(n)
+	if err != nil {
+		return "", err
+	}
+
+	return string(bytes), nil
 }
 
 func (n *NodeJVMService) Path() string {

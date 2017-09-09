@@ -2,6 +2,7 @@ package logstash
 
 import (
 	"context"
+	"encoding/json"
 )
 
 type NodeInfoOS struct {
@@ -23,6 +24,15 @@ const (
 
 func NewNodeOSService(client *Client) *NodeOSService {
 	return &NodeOSService{client: client}
+}
+
+func (n *NodeInfoOS) Json() (string, error) {
+	bytes, err := json.Marshal(n)
+	if err != nil {
+		return "", err
+	}
+
+	return string(bytes), nil
 }
 
 func (n *NodeOSService) Path() string {

@@ -1,0 +1,25 @@
+{
+  "host": "24715d825098",
+  "version": "5.5.2",
+  "http_address": "0.0.0.0:9600",
+  "id": "712651b6-3bbd-4459-ba38-af0a1a79183b",
+  "name": "24715d825098",
+  "jvm": {
+    "pid": 1,
+    "version": "1.8.0_141",
+    "vm_version": "1.8.0_141",
+    "vm_vendor": "Oracle Corporation",
+    "vm_name": "OpenJDK 64-Bit Server VM",
+    "start_time_in_millis": 1504967438640,
+    "mem": {
+      "heap_init_in_bytes": 1073741824,
+      "heap_max_in_bytes": 1038876672,
+      "non_heap_init_in_bytes": 2555904,
+      "non_heap_max_in_bytes": 0
+    },
+    "gc_collectors": [
+      "ParNew",
+      "ConcurrentMarkSweep"
+    ]
+  }
+}
