@@ -66,6 +66,12 @@ func (c *Client) NodeJVMInfo() *NodeJVMService {
 	return NewNodeJVMService(c)
 }
 
+// plugins info api
 func (c *Client) Plugins() *PluginsService {
 	return NewPluginsService(c)
+}
+
+// hot threads info api
+func (c *Client) HotThreadsInfo() *HotThreadsInfoService {
+	return NewHotThreadsInfoService(c)
 }

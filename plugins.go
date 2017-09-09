@@ -1,6 +1,8 @@
 package logstash
 
-import "context"
+import (
+	"context"
+)
 
 type Plugins struct {
 	Total   int      `json:"total"`
