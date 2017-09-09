@@ -1,6 +1,9 @@
 package logstash
 
-import "context"
+import (
+	"context"
+	"encoding/json"
+)
 
 type NodeProcessStatsInfo struct {
 	Process struct {
@@ -14,7 +17,9 @@ type NodeProcessStatsInfo struct {
 			TotalInMillis int `json:"total_in_millis"`
 			Percent       int `json:"percent"`
 			LoadAverage   struct {
-				Minitue float64 `json:"1m"`
+				Minitue        float64 `json:"1m"`
+				FiveMinitue    float64 `json:"5m"`
+				FifteenMinitue float64 `json:"15m"`
 			} `json:"load_average"`
 		} `json:"cpu"`
 	} `json:"process"`
@@ -30,6 +35,15 @@ const (
 
 func NewNodeProcessStatsService(client *Client) *NodeProcessStatsService {
 	return &NodeProcessStatsService{client: client}
+}
+
+func (n *NodeProcessStatsInfo) Json() (string, error) {
+	bytes, err := json.Marshal(n)
+	if err != nil {
+		return "", err
+	}
+
+	return string(bytes), nil
 }
 
 func (n *NodeProcessStatsService) Path() string {

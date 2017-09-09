@@ -2,6 +2,7 @@ package logstash
 
 import (
 	"context"
+	"encoding/json"
 	"time"
 )
 
@@ -23,22 +24,11 @@ type NodePipelineStatsInfo struct {
 			LastError            *time.Time `json:"last_error"`
 			Successes            int        `json:"successes"`
 			LastSuccessTimestamp *time.Time `json:"last_success_timestamp"`
-			LastFailureTimestamp *time.Time `json:"last_success_timestamp"`
+			LastFailureTimestamp *time.Time `json:"last_failure_timestamp"`
 			Failures             int        `json:"failures"`
 		} `json:"reloads"`
 		Queue struct {
-			Events   int    `json:"events"`
-			Type     string `json:"type"`
-			Capacity struct {
-				PageCapacityInBytes int `json:"page_capacity_in_bytes"`
-				MaxQueueSizeInBytes int `json:"max_queue_size_in_bytes"`
-				MaxUnreadEvents     int `json:"max_unread_events"`
-			} `json:"capacity"`
-			Data struct {
-				Path             string `json:"path"`
-				FreeSpaceInBytes int    `json:"free_space_in_bytes"`
-				StorageType      string `json:"storage_type"`
-			} `json:"data"`
+			Type string `json:"type"`
 		} `json:"queue"`
 		ID string `json:"id"`
 	} `json:"pipeline"`
@@ -47,7 +37,7 @@ type NodePipelineStatsInfo struct {
 type PluginInput struct {
 	ID     string `json:"id"`
 	Events struct {
-		Out                       int "out"
+		Out                       int `json:"out"`
 		QueuePushDurationInMillis int `json:"queue_push_duration_in_millis"`
 	} `json:"events"`
 	Name string `json:"name"`
@@ -68,12 +58,7 @@ type PluginFilters struct {
 }
 
 type PluginOutputs struct {
-	ID     string `json:"id"`
-	Events struct {
-		In                        int "in"
-		Out                       int "out"
-		QueuePushDurationInMillis int `json:"queue_push_duration_in_millis"`
-	} `json:"events"`
+	ID   string `json:"id"`
 	Name string `json:"name"`
 }
 
@@ -93,6 +78,15 @@ func (n *NodePipelineStatsService) Path() string {
 	return node_pipeline_stats_endpoint
 }
 
+func (n *NodePipelineStatsInfo) Json() (string, error) {
+	bytes, err := json.Marshal(n)
+	if err != nil {
+		return "", err
+	}
+
+	return string(bytes), nil
+}
+
 func (n *NodePipelineStatsService) Do(ctx context.Context) (*NodePipelineStatsInfo, error) {
 	req, err := n.client.newRequest(ctx, "GET", node_pipeline_stats_endpoint, nil)
 	if err != nil {
@@ -104,10 +98,10 @@ func (n *NodePipelineStatsService) Do(ctx context.Context) (*NodePipelineStatsIn
 		return nil, err
 	}
 
-	var nr NodePipelineStatsInfo
-	if err := n.client.decodeBody(res, &nr); err != nil {
+	var np NodePipelineStatsInfo
+	if err := n.client.decodeBody(res, &np); err != nil {
 		return nil, err
 	}
 
-	return &nr, nil
+	return &np, nil
 }

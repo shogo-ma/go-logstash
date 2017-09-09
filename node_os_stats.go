@@ -2,24 +2,25 @@ package logstash
 
 import (
 	"context"
+	"encoding/json"
 )
 
 type NodeStatsOSInfo struct {
 	OS struct {
 		CGroup struct {
 			CPUAcct struct {
-				ControlGroup string `json:"control_group"`
 				UsageNanos   int    `json:"usage_nanos"`
+				ControlGroup string `json:"control_group"`
 			} `json:"cpuacct"`
 			CPU struct {
-				ControlGroup    string `json:"control_group"`
-				CfsPeriosMicros int    `json:"cfs_period_micros"`
-				CfsQuotaMicros  int    `json:"cfs_quota_micros"`
-				Stat            struct {
-					NumberOfElapsedPeriods int `json:"number_of_elapsed_periods"`
+				CfsQuotaMicros int    `json:"cfs_quota_micros"`
+				ControlGroup   string `json:"control_group"`
+				Stat           struct {
 					NumberOfTimesThrottled int `json:"number_of_times_throttled"`
 					TimeThrottledNanos     int `json:"time_throttled_nanos"`
+					NumberOfElapsedPeriods int `json:"number_of_elapsed_periods"`
 				} `json:"stat"`
+				CfsPeriosMicros int `json:"cfs_period_micros"`
 			} `json:"cpu"`
 		} `json:"cgroup"`
 	} `json:"os"`
@@ -35,6 +36,15 @@ const (
 
 func NewNodeStatsOSService(client *Client) *NodeStatsOSService {
 	return &NodeStatsOSService{client: client}
+}
+
+func (n *NodeStatsOSInfo) Json() (string, error) {
+	bytes, err := json.Marshal(n)
+	if err != nil {
+		return "", err
+	}
+
+	return string(bytes), nil
 }
 
 func (n *NodeStatsOSService) Path() string {

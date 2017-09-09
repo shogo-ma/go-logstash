@@ -32,7 +32,7 @@ func setupTestClient() *Client {
 	})
 
 	mux.HandleFunc("/_node/stats/pipeline", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "testdata/node_os_pipeline.json")
+		http.ServeFile(w, r, "testdata/node_stats_pipeline.json")
 	})
 
 	mux.HandleFunc("/_node/stats/reloads", func(w http.ResponseWriter, r *http.Request) {

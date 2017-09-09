@@ -1,0 +1,24 @@
+{
+  "host": "24715d825098",
+  "version": "5.5.2",
+  "http_address": "0.0.0.0:9600",
+  "id": "712651b6-3bbd-4459-ba38-af0a1a79183b",
+  "name": "24715d825098",
+  "process": {
+    "open_file_descriptors": 109,
+    "peak_open_file_descriptors": 109,
+    "max_file_descriptors": 1048576,
+    "mem": {
+      "total_virtual_in_bytes": 4855468032
+    },
+    "cpu": {
+      "total_in_millis": 63750,
+      "percent": 3,
+      "load_average": {
+        "1m": 2.05,
+        "5m": 2.16,
+        "15m": 2.13
+      }
+    }
+  }
+}

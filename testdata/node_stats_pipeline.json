@@ -1,0 +1,46 @@
+{
+  "host": "24715d825098",
+  "version": "5.5.2",
+  "http_address": "0.0.0.0:9600",
+  "id": "712651b6-3bbd-4459-ba38-af0a1a79183b",
+  "name": "24715d825098",
+  "pipeline": {
+    "events": {
+      "duration_in_millis": 0,
+      "in": 0,
+      "filtered": 0,
+      "out": 0,
+      "queue_push_duration_in_millis": 0
+    },
+    "plugins": {
+      "inputs": [
+        {
+          "id": "a35197a509596954e905e38521bae12b1498b17d-1",
+          "events": {
+            "out": 0,
+            "queue_push_duration_in_millis": 0
+          },
+          "name": "beats"
+        }
+      ],
+      "filters": [],
+      "outputs": [
+        {
+          "id": "a35197a509596954e905e38521bae12b1498b17d-2",
+          "name": "stdout"
+        }
+      ]
+    },
+    "reloads": {
+      "last_error": null,
+      "successes": 0,
+      "last_success_timestamp": null,
+      "last_failure_timestamp": null,
+      "failures": 0
+    },
+    "queue": {
+      "type": "memory"
+    },
+    "id": "main"
+  }
+}

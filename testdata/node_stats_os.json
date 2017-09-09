@@ -1,0 +1,25 @@
+{
+  "host": "lily",
+  "version": "5.5.2",
+  "http_address": "127.0.0.1:9600",
+  "id": "47df6ae6-4b99-4ff2-8a6c-81b225aec34f",
+  "name": "lily",
+  "os": {
+    "cgroup": {
+      "cpuacct": {
+        "usage_nanos": 56317523679003,
+        "control_group": "/user.slice"
+      },
+      "cpu": {
+        "cfs_quota_micros": -1,
+        "control_group": "/user.slice",
+        "stat": {
+          "number_of_times_throttled": 0,
+          "time_throttled_nanos": 0,
+          "number_of_elapsed_periods": 0
+        },
+        "cfs_period_micros": 100000
+      }
+    }
+  }
+}
