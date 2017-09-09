@@ -65,3 +65,7 @@ func (c *Client) NodeOSInfo() *NodeOSService {
 func (c *Client) NodeJVMInfo() *NodeJVMService {
 	return NewNodeJVMService(c)
 }
+
+func (c *Client) Plugins() *PluginsService {
+	return NewPluginsService(c)
+}
