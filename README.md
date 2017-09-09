@@ -1,5 +1,6 @@
 # go-logstash
 [![Build Status](https://travis-ci.org/shogo-ma/go-logstash.svg?branch=master)](https://travis-ci.org/shogo-ma/go-logstash)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](license)
 
 A library for call HTTP Request to logstash
 
