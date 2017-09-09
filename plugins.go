@@ -2,6 +2,7 @@ package logstash
 
 import (
 	"context"
+	"encoding/json"
 )
 
 type Plugins struct {
@@ -28,6 +29,15 @@ func NewPluginsService(client *Client) *PluginsService {
 
 func (p *PluginsService) Path() string {
 	return plugins_endpoint
+}
+
+func (p *Plugins) Json() (string, error) {
+	bytes, err := json.Marshal(p)
+	if err != nil {
+		return "", err
+	}
+
+	return string(bytes), nil
 }
 
 func (p *PluginsService) Do(ctx context.Context) (*Plugins, error) {
