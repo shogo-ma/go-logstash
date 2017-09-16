@@ -9,16 +9,16 @@ type NodeStatsOSInfo struct {
 	OS struct {
 		CGroup struct {
 			CPUAcct struct {
-				UsageNanos   int    `json:"usage_nanos"`
+				UsageNanos   uint64 `json:"usage_nanos"`
 				ControlGroup string `json:"control_group"`
 			} `json:"cpuacct"`
 			CPU struct {
 				CfsQuotaMicros int    `json:"cfs_quota_micros"`
 				ControlGroup   string `json:"control_group"`
 				Stat           struct {
-					NumberOfTimesThrottled int `json:"number_of_times_throttled"`
-					TimeThrottledNanos     int `json:"time_throttled_nanos"`
-					NumberOfElapsedPeriods int `json:"number_of_elapsed_periods"`
+					NumberOfTimesThrottled uint64 `json:"number_of_times_throttled"`
+					TimeThrottledNanos     uint64 `json:"time_throttled_nanos"`
+					NumberOfElapsedPeriods uint64 `json:"number_of_elapsed_periods"`
 				} `json:"stat"`
 				CfsPeriosMicros int `json:"cfs_period_micros"`
 			} `json:"cpu"`

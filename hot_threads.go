@@ -8,7 +8,7 @@ import (
 type HotThreadsInfo struct {
 	HotThreads struct {
 		Time           string   `json:"time"`
-		BusiestThreads int      `json:"busiest_threads"`
+		BusiestThreads uint32   `json:"busiest_threads"`
 		Threads        []Thread `json:"threads"`
 	} `json:"hot_threads"`
 }

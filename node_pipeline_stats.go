@@ -9,11 +9,11 @@ import (
 type NodePipelineStatsInfo struct {
 	Pipeline struct {
 		Events struct {
-			DurationInMillis          int `json:"duration_in_millis"`
-			In                        int `json:"in"`
-			Filtered                  int `json:"filtered"`
-			Out                       int `json:"out"`
-			QueuePushDurationInMillis int `json:"queue_push_duration_in_millis"`
+			DurationInMillis          uint64 `json:"duration_in_millis"`
+			In                        uint64 `json:"in"`
+			Filtered                  uint64 `json:"filtered"`
+			Out                       uint64 `json:"out"`
+			QueuePushDurationInMillis uint64 `json:"queue_push_duration_in_millis"`
 		} `json:"events"`
 		Plugins struct {
 			Inputs  []PluginInput   `json:"inputs"`
@@ -22,10 +22,10 @@ type NodePipelineStatsInfo struct {
 		} `json:"plugins"`
 		Reloads struct {
 			LastError            *time.Time `json:"last_error"`
-			Successes            int        `json:"successes"`
+			Successes            uint64     `json:"successes"`
 			LastSuccessTimestamp *time.Time `json:"last_success_timestamp"`
 			LastFailureTimestamp *time.Time `json:"last_failure_timestamp"`
-			Failures             int        `json:"failures"`
+			Failures             uint64     `json:"failures"`
 		} `json:"reloads"`
 		Queue struct {
 			Type string `json:"type"`
@@ -37,8 +37,8 @@ type NodePipelineStatsInfo struct {
 type PluginInput struct {
 	ID     string `json:"id"`
 	Events struct {
-		Out                       int `json:"out"`
-		QueuePushDurationInMillis int `json:"queue_push_duration_in_millis"`
+		Out                       uint64 `json:"out"`
+		QueuePushDurationInMillis uint64 `json:"queue_push_duration_in_millis"`
 	} `json:"events"`
 	Name string `json:"name"`
 }
@@ -46,11 +46,11 @@ type PluginInput struct {
 type PluginFilters struct {
 	ID     string `json:"id"`
 	Events struct {
-		In                        int "in"
-		Out                       int "out"
-		QueuePushDurationInMillis int `json:"queue_push_duration_in_millis"`
+		In                        uint64 "in"
+		Out                       uint64 "out"
+		QueuePushDurationInMillis uint64 `json:"queue_push_duration_in_millis"`
 	} `json:"events"`
-	Matches          int `json:"matches"`
+	Matches          uint64 `json:"matches"`
 	PatternsPerField struct {
 		Message string `json:"message"`
 	} `json:"patterns_per_field"`

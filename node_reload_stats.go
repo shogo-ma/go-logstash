@@ -7,8 +7,8 @@ import (
 
 type NodeReloadStatsInfo struct {
 	Reloads struct {
-		Successes int `json:"successes"`
-		Failures  int `json:"failures"`
+		Successes uint32 `json:"successes"`
+		Failures  uint32 `json:"failures"`
 	} `json:"reloads"`
 }
 

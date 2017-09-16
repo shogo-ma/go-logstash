@@ -6,7 +6,7 @@ import (
 )
 
 type Plugins struct {
-	Total   int      `json:"total"`
+	Total   uint32   `json:"total"`
 	Plugins []Plugin `json:"plugins"`
 }
 

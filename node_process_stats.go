@@ -7,15 +7,15 @@ import (
 
 type NodeProcessStatsInfo struct {
 	Process struct {
-		OpenFileDescriptors     int `json:"open_file_descriptors"`
-		PeakOpenFileDescriptors int `json:"peak_open_file_descriptors"`
-		MaxFileDescriptors      int `json:"max_file_descriptors"`
+		OpenFileDescriptors     uint32 `json:"open_file_descriptors"`
+		PeakOpenFileDescriptors uint32 `json:"peak_open_file_descriptors"`
+		MaxFileDescriptors      uint32 `json:"max_file_descriptors"`
 		Mem                     struct {
-			TotalVirtualInBytes int `json:"total_virtual_in_bytes"`
+			TotalVirtualInBytes uint64 `json:"total_virtual_in_bytes"`
 		} `json:"mem"`
 		CPU struct {
-			TotalInMillis int `json:"total_in_millis"`
-			Percent       int `json:"percent"`
+			TotalInMillis uint32 `json:"total_in_millis"`
+			Percent       uint32 `json:"percent"`
 			LoadAverage   struct {
 				Minitue        float64 `json:"1m"`
 				FiveMinitue    float64 `json:"5m"`

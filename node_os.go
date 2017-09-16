@@ -10,7 +10,7 @@ type NodeInfoOS struct {
 		Name                string `json:"name"`
 		Arch                string `json:"arch"`
 		Version             string `json:"version"`
-		AvailableProcessors int    `json:"available_processors"`
+		AvailableProcessors uint32 `json:"available_processors"`
 	} `json:"os"`
 }
 
