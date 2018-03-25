@@ -1,4 +1,0 @@
-package: github.com/shogo-ma/go-logstash
-import:
-- package: github.com/stretchr/testify
-  version: v1.1.4

@@ -1,13 +1,14 @@
 language: go
 
 go:
-    - 1.8
+    - "1.8"
+    - "1.9"
+
+before_install:
+    - go get -u github.com/golang/dep/...
 
 install:
-    - go get github.com/Masterminds/glide
-
-before_script:
+    - dep ensure
 
 script:
-    - glide install
-    - go test $(glide novendor)
+    - go test
